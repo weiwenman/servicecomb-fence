@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mysql
+data:
+  # kv format
+  DB_URL: "jdbc:mysql://mysql/authentication_server_db"
+  DB_USERNAME: ""
+  DB_PASSWORD: "!Redhat123"
+  DB_DRIVER: ""
+
