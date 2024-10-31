@@ -1,7 +1,7 @@
 #!/bin/bash
 BASE_PATH=$(dirname "$0")
 echo "begin deploy admin-backend,path=${BASE_PATH}"
-cd $BASE_PATH
+cd "$BASE_PATH" || exit 1
 kubectl delete svc admin-backend
 kubectl delete deploy admin-backend
 docker rmi swr.cn-north-4.myhuaweicloud.com/wmwei/admin-service:0.0.1
