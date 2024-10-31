@@ -9,4 +9,4 @@ docker build -t swr.cn-north-4.myhuaweicloud.com/wmwei/admin-service:0.0.1 .
 kubectl apply -f k8s/admin-backend-deploy.yaml
 kubectl apply -f k8s/admin-backend-server.yaml
 echo "deploy admin-backend end"
-cd -
+cd - || exit 0
