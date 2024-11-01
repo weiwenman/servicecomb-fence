@@ -5,7 +5,7 @@ metadata:
 data:
   # default gaussdb info
   DB_URL: "jdbc:postgresql://opengauss:5432/postgres"
-  DB_USERNAME: "opengauss"
+  DB_USERNAME: "gaussdb"
   DB_PASSWORD: "Postgres@123"
   DB_DRIVER: "org.postgresql.Driver"
 

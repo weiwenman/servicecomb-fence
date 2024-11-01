@@ -42,6 +42,7 @@
     <module>admin-website</module>
     <module>integration-tests</module>
     <module>scaffolding</module>
+    <module>jooq-demo-server</module>
   </modules>
 
   <dependencyManagement>

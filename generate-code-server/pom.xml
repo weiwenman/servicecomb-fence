@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.apache.servicecomb.fence</groupId>
+        <artifactId>project-fence</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>generate-code-server</artifactId>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <jooq.version>3.19.14</jooq.version>
+        <postgres.version>42.7.2</postgres.version>
+    </properties>
+
+    <dependencies>
+
+        <!-- Database access -->
+        <dependency>
+            <groupId>org.jooq</groupId>
+            <artifactId>jooq</artifactId>
+            <version>${jooq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>${jooq.version}</version>
+                <configuration>
+                    <onUnused>SILENT</onUnused>
+                    <jdbc>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost:5432/postgres</url>
+                        <user>gaussdb</user>
+                        <password>Postgres@123</password>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <inputSchema>public</inputSchema>
+                            <excludes>flyway_.*</excludes>
+                            <syntheticObjects>
+                                <readonlyColumns>
+                                    <readonlyColumn>
+                                        <tables>.*</tables>
+                                        <fields>last_update</fields>
+                                    </readonlyColumn>
+                                </readonlyColumns>
+                                <columns>
+                                    <column>
+                                        <tables>staff|store</tables>
+                                        <name>full_address</name>
+                                        <type>text</type>
+                                    </column>
+                                    <column>
+                                        <tables>staff</tables>
+                                        <name>full_name</name>
+                                        <type>text</type>
+                                    </column>
+                                </columns>
+                            </syntheticObjects>
+                        </database>
+                        <generate>
+                            <pojosAsJavaRecordClasses>true</pojosAsJavaRecordClasses>
+                            <pojosEqualsAndHashCode>false</pojosEqualsAndHashCode>
+                            <pojos>true</pojos>
+                            <pojosToString>false</pojosToString>
+                            <daos>true</daos>
+                        </generate>
+                        <target>
+                            <directory>src/main/java</directory>
+                            <packageName>org.apache.servicecomb.fence.generate</packageName>
+                        </target>
+                    </generator>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>generate-code</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate-code</goal>
+                        </goals>
+                        <configuration>
+                            <generator>
+                                <database>
+                                    <forcedTypes>
+                                        <!-- Virtual client side computed columns are client side computed columns that are
+                                             based on synthetic column declarations (see above)
+
+                                             See: https://www.jooq.org/doc/latest/manual/code-generation/codegen-advanced/codegen-config-database/codegen-database-forced-types/codegen-database-forced-types-computed/
+                                             -->
+                                        <forcedType>
+                                            <generator>ctx -> DSL.concat(FIRST_NAME, DSL.inline(" "), LAST_NAME)
+                                            </generator>
+                                            <includeExpression>full_name</includeExpression>
+                                        </forcedType>
+                                        <forcedType>
+                                            <generator>ctx -> DSL.concat(address().ADDRESS_, DSL.inline(", "),
+                                                address().POSTAL_CODE, DSL.inline(", "), address().city().CITY_,
+                                                DSL.inline(", "), address().city().country().COUNTRY_)
+                                            </generator>
+                                            <includeExpression>full_address</includeExpression>
+                                        </forcedType>
+                                    </forcedTypes>
+                                </database>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>

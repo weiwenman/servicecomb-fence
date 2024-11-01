@@ -36,5 +36,6 @@
     <module>admin-service-api</module>
     <module>observability-api</module>
     <module>observability-api-impl</module>
+    <module>jooq-demo-api</module>
   </modules>
 </project>

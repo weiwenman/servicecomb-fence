@@ -110,3 +110,27 @@ function guestSayHello() {
         async: true
     });
 }
+
+function jooqDemo() {
+    $.ajax({
+        type: 'GET',
+        url: "/api/jooq/v1/handler/actor/list",
+        headers: {
+            "Authorization": "Bearer " + JSON.parse(window.localStorage.getItem("token")).id_token,
+            "Authorization-TYPE": "ID_TOKEN"
+        },
+        success: function (data) {
+            console.log(data);
+            var error = document.getElementById("error");
+            error.textContent="Successfully";
+            error.hidden=false;
+        },
+        error: function(data) {
+            console.log(data);
+            var error = document.getElementById("error");
+            error.textContent="Failed";
+            error.hidden=false;
+        },
+        async: true
+    });
+}

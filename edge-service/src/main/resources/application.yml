@@ -85,6 +85,10 @@ servicecomb:
               prefixSegmentCount: 2
               path: "/api/resource/.*"
               microserviceName: resource-server
+            jooq-demo-server:
+              prefixSegmentCount: 2
+              path: "/api/jooq/.*"
+              microserviceName: jooq-demo-server
             authentication-server:
               prefixSegmentCount: 2
               path: "/api/authentication/.*"
