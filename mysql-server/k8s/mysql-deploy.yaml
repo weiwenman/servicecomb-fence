@@ -15,6 +15,10 @@ spec:
       labels:
         app: mysql-pods
     spec:
+      volumes:
+        - name: pvc-mysql-dev
+          persistentVolumeClaim:
+            claimName: pvc-mysql-dev
       containers:
         - name: mysql-container
           image: swr.cn-north-4.myhuaweicloud.com/wmwei/mysql:5.7
