@@ -34,7 +34,7 @@ spec:
                 configMapKeyRef:
                   key: DB_URL
                   name: mysql
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9061
               protocol: TCP
@@ -45,5 +45,7 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "250m"
+      imagePullSecrets:
+        - name: default-secret
       restartPolicy: Always
       

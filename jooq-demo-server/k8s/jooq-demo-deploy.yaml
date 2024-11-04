@@ -44,7 +44,7 @@ spec:
                 configMapKeyRef:
                   key: DB_DRIVER
                   name: opengauss
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9092
               protocol: TCP
@@ -55,5 +55,7 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "250m"
+      imagePullSecrets:
+        - name: default-secret
       restartPolicy: Always
       

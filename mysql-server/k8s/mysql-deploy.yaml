@@ -28,7 +28,7 @@ spec:
                 configMapKeyRef:
                   key: DB_PASSWORD
                   name: mysql
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 3306
               protocol: TCP
@@ -43,5 +43,7 @@ spec:
             - name: pvc-mysql-dev
               mountPath: /var/lib/mysql
               subPath: data
+      imagePullSecrets:
+        - name: default-secret
       restartPolicy: Always
       
