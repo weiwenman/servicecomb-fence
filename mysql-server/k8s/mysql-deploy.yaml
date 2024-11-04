@@ -36,7 +36,7 @@ spec:
               memory: "512Mi"
               cpu: "250m"
           volumeMounts:
-            - name: huawei-work-mysql-dev-data
+            - name: pvc-mysql-dev
               mountPath: /var/lib/mysql
               subPath: data
       restartPolicy: Always
