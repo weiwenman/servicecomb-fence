@@ -24,7 +24,7 @@ spec:
                 configMapKeyRef:
                   name: edge
                   key: ZK_SERVER
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9090
               protocol: TCP
@@ -35,5 +35,7 @@ spec:
             limits:
               memory: "256Mi"
               cpu: "250m"
+      imagePullSecrets:
+        - name: default-secret
       restartPolicy: Always
       
