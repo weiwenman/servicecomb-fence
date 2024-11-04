@@ -16,6 +16,8 @@
 ## limitations under the License.
 ## ---------------------------------------------------------------------------
 servicecomb:
+  tracing:
+    enabled: true # 是否启用调用链追踪功能，默认为 true
   service:
     application: scb-fence
     name: edge-service

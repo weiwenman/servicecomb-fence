@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: zookeeper
+  name: zipkin-demo
 spec:
   selector:
-    app: zookeeper-pods
+    app: zipkin-demo-pods
   ports:
     - protocol: TCP
-      port: 2181
-      targetPort: 2181
+      port: 9411
+      targetPort: 9411
   type: LoadBalancer
   

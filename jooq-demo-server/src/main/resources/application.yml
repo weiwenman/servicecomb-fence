@@ -16,6 +16,14 @@
 ## limitations under the License.
 ## ---------------------------------------------------------------------------
 servicecomb:
+  tracing:
+    enabled: true # 是否启用调用链追踪功能，默认为 true
+    reporter:
+      log.enabled: false # 是否将调用链日志输出到文件, 默认为 true
+      zipkin.enabled: true # 是否将调用链日志输出到Zipkin服务器, 默认为 false
+    collector:  # 配置Zipkin服务器 API 版本和地址信息
+      apiVersion: v2
+      address: http://localhost:9411
   service:
     application: scb-fence
     name: jooq-demo-server

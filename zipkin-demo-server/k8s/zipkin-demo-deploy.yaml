@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipkin-demo
+  labels:
+    app: zipkin-demo-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipkin-demo-pods
+  template:
+    metadata:
+      name: zipkin-demo-pod
+      labels:
+        app: zipkin-demo-pods
+    spec:
+      containers:
+        - name: zipkin-demo-container
+          image: swr.cn-north-4.myhuaweicloud.com/wmwei/zipkin:latest
+#          env:
+#            - name: STORAGE_TYPE
+#              value: mysql
+#            - name: MYSQL_USER
+#              value: zipkin
+#            - name: MYSQL_PASS
+#              value: zipkin
+#            - name: MYSQL_DB
+#              value: zipkin
+#            - name: MYSQL_HOST
+#              value: 172.17.0.2
+#            - name: MYSQL_JDBC_URL
+#              value: jdbc:mysql://172.17.0.2/zipkin?autoReconnect=true&useSSL=false&useUnicode=yes&characterEncoding=UTF-8
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 9411
+              protocol: TCP
+          resources:
+            requests:
+              memory: "128Mi"
+              cpu: "300m"
+            limits:
+              memory: "512Mi"
+              cpu: "1000m"
+      restartPolicy: Always
+      
