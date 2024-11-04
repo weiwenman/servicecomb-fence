@@ -30,10 +30,14 @@ spec:
               protocol: TCP
           resources:
             requests:
-              memory: "1024Mi"
-              cpu: "1000m"
+              memory: "512Mi"
+              cpu: "250m"
             limits:
-              memory: "2048Mi"
-              cpu: "2000m"
+              memory: "512Mi"
+              cpu: "250m"
+          volumeMounts:
+            - name: huawei-work-mysql-dev-data
+              mountPath: /var/lib/mysql
+              subPath: data
       restartPolicy: Always
       
