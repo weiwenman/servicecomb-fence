@@ -41,6 +41,11 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
         <!-- Database access -->
+<!--        <dependency>
+            <groupId>org.opengauss</groupId>
+            <artifactId>opengauss-jdbc</artifactId>
+            <version>5.1.0-og</version>
+        </dependency>-->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>

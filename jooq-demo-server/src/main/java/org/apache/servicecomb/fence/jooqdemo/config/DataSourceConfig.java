@@ -20,10 +20,13 @@ import static org.jooq.impl.DSL.using;
 @Component
 @ConfigurationProperties(prefix = "servicecomb.jooq")
 public class DataSourceConfig {
-    //    private String url = "jdbc:postgresql://localhost:5432/postgres";
+
+//    private String url = "jdbc:postgresql://localhost:5432/postgres";
 //    private String username = "gaussdb";
 //    private String password = "Postgres@123";
 //    private String driverClassName = "org.postgresql.Driver";
+    private DSLContext ctx;
+    private Connection conn;
     private String url;
     private String username;
     private String password;
@@ -31,12 +34,15 @@ public class DataSourceConfig {
 
     @Bean
     public DSLContext dslContext() throws SQLException {
-        Connection conn = DriverManager.getConnection(url, username, password);
-        DataSource jdbc = new SingleConnectionDataSource(conn);
-        Configuration configuration = new DefaultConfiguration();
-        configuration.set(jdbc).set(SQLDialect.POSTGRES)
-                .set(new Settings().withRenderFormatted(true));
-        return using(configuration);
+        if (conn == null || ctx == null) {
+            conn = DriverManager.getConnection(url, username, password);
+            DataSource jdbc = new SingleConnectionDataSource(conn);
+            Configuration configuration = new DefaultConfiguration();
+            configuration.set(jdbc).set(SQLDialect.POSTGRES)
+                    .set(new Settings().withRenderFormatted(true));
+            ctx = using(configuration);
+        }
+        return ctx;
     }
 
     public String getUrl() {
