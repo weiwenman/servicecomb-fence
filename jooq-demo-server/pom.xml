@@ -64,6 +64,92 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+           <!-- <plugin>
+                <groupId>org.jooq</groupId>
+                <artifactId>jooq-codegen-maven</artifactId>
+                <version>${jooq.version}</version>
+                <configuration>
+                    <onUnused>SILENT</onUnused>
+                    <jdbc>
+                        <driver>org.postgresql.Driver</driver>
+                        <url>jdbc:postgresql://localhost:5432/postgres</url>
+                        <user>gaussdb</user>
+                        <password>Postgres@123</password>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <inputSchema>public</inputSchema>
+                            <excludes>flyway_.*</excludes>
+                            <syntheticObjects>
+                                <readonlyColumns>
+                                    <readonlyColumn>
+                                        <tables>.*</tables>
+                                        <fields>last_update</fields>
+                                    </readonlyColumn>
+                                </readonlyColumns>
+                                <columns>
+                                    <column>
+                                        <tables>staff|store</tables>
+                                        <name>full_address</name>
+                                        <type>text</type>
+                                    </column>
+                                    <column>
+                                        <tables>staff</tables>
+                                        <name>full_name</name>
+                                        <type>text</type>
+                                    </column>
+                                </columns>
+                            </syntheticObjects>
+                        </database>
+                        <generate>
+                            <pojosAsJavaRecordClasses>true</pojosAsJavaRecordClasses>
+                            <pojosEqualsAndHashCode>false</pojosEqualsAndHashCode>
+                            <pojos>true</pojos>
+                            <pojosToString>false</pojosToString>
+                            <daos>true</daos>
+                        </generate>
+                        <target>
+                            <directory>src/main/java</directory>
+                            <packageName>org.apache.servicecomb.fence.generate</packageName>
+                        </target>
+                    </generator>
+                </configuration>
+
+                <executions>
+                    <execution>
+                        <id>generate-code</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generator>
+                                <database>
+                                    <forcedTypes>
+                                        &lt;!&ndash; Virtual client side computed columns are client side computed columns that are
+                                             based on synthetic column declarations (see above)
+
+                                             See: https://www.jooq.org/doc/latest/manual/code-generation/codegen-advanced/codegen-config-database/codegen-database-forced-types/codegen-database-forced-types-computed/
+                                             &ndash;&gt;
+                                        <forcedType>
+                                            <generator>ctx -> DSL.concat(FIRST_NAME, DSL.inline(" "), LAST_NAME)
+                                            </generator>
+                                            <includeExpression>full_name</includeExpression>
+                                        </forcedType>
+                                        <forcedType>
+                                            <generator>ctx -> DSL.concat(address().ADDRESS_, DSL.inline(", "),
+                                                address().POSTAL_CODE, DSL.inline(", "), address().city().CITY_,
+                                                DSL.inline(", "), address().city().country().COUNTRY_)
+                                            </generator>
+                                            <includeExpression>full_address</includeExpression>
+                                        </forcedType>
+                                    </forcedTypes>
+                                </database>
+                            </generator>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>-->
         </plugins>
     </build>
 </project>
