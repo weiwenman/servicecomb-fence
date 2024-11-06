@@ -18,16 +18,18 @@ spec:
       containers:
         - name: zookeeper-container
           image: swr.cn-north-4.myhuaweicloud.com/wmwei/zookeeper:3.9.2
-          imagePullPolicy: Never
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 2181
               protocol: TCP
           resources:
             requests:
-              memory: "128Mi"
-              cpu: "300m"
+              memory: "512Mi"
+              cpu: "250m"
             limits:
               memory: "512Mi"
-              cpu: "1000m"
+              cpu: "250m"
+      imagePullSecrets:
+        - name: default-secret
       restartPolicy: Always
       
