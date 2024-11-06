@@ -46,7 +46,7 @@ spec:
                   name: opengauss
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 9092
+            - containerPort: 9098
               protocol: TCP
           resources:
             requests:
