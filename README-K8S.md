@@ -81,6 +81,7 @@ servicecomb-fence基于servicecomb-java-chassis提供认证鉴权支持。鉴权
 5. ELB负载均衡
 
 * [demo地址](https://github.com/weiwenman/servicecomb-fence)：https://github.com/weiwenman/servicecomb-fence
+* [博客地址](https://bbs.huaweicloud.com/blogs/438885)：https://bbs.huaweicloud.com/blogs/438885
 * demo运行结果关键截图
 ![result](./img/jooq-result.png)
 * demo运行环境资源清单
