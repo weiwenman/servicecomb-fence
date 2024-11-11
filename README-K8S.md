@@ -80,4 +80,23 @@ servicecomb-fence基于servicecomb-java-chassis提供认证鉴权支持。鉴权
 4. SWR容器镜像
 5. ELB负载均衡
 
-[demo地址](https://github.com/weiwenman/servicecomb-fence)：https://github.com/weiwenman/servicecomb-fence
+* [demo地址](https://github.com/weiwenman/servicecomb-fence)：https://github.com/weiwenman/servicecomb-fence
+* demo运行结果关键截图
+![result](./img/jooq-result.png)
+* demo运行环境资源清单
+
+| 产品名称         | 产品类型 | 数据库引擎版本  | 内核引擎版本  | 实例类型 | 部署形态 | 备注  |
+|--------------|------|----------|---------|------|------|-----|
+| 云数据库 GaussDB | 基础版  | V2.0-8.* | 505.1.* | 集中式  | 1主2备 | 推荐  |
+
+<br />
+
+| 产品名称      | 集群类型             | 集群版本  | 集群规模 | 备注  |
+|-----------|------------------|-------|------|-----|
+| 云容器引擎 CCE | CCE Standard 集群  | V1.29 | 50   | 推荐  |
+
+<br />
+
+| 产品名称   | CPU架构 | 	实例类型     | 公共镜像                 | 镜像版本                                         | 备注  |
+|--------|-------|-----------|----------------------|----------------------------------------------|-----|
+| 弹性云服务器 | 鲲鹏计算  | 鲲鹏通用计算增强型 | Huawei Cloud EulerOS | Huawei Cloud EulerOS 2.0 标准版 64位 ARM版(10GiB) | 推荐  |
