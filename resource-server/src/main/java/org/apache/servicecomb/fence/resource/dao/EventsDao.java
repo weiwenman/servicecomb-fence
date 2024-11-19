@@ -39,6 +39,10 @@ public class EventsDao {
     }
 
     public Events findById(Long id) {
-        return sessionFactory.getCurrentSession().get(Events.class, id);
+        List<Events> events = new ArrayList<>();
+        sessionFactory.inTransaction(session -> {
+            events.add(session.get(Events.class, id));
+        });
+        return events.get(0);
     }
 }
