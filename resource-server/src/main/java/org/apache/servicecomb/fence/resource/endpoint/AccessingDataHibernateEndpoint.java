@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestSchema(schemaId = "AccessingDataHibernateEndpoint")
@@ -18,12 +19,16 @@ public class AccessingDataHibernateEndpoint {
     private EventsDao eventsDao;
 
     @GetMapping("/findById")
-    public Events getEventsById(@RequestParam(name = "id") String id) {
+    public Events getEventsById(@RequestParam(name = "id") Long id) {
         return eventsDao.findById(id);
     }
 
     @PutMapping("/save")
-    public Events saveEvents(Events events) {
+    public Events saveEvents(@RequestParam("id") Long id, @RequestParam("event") String event) {
+        Events events = new Events();
+        events.setId(id);
+        events.setEvent(event);
+        events.setEventTime(LocalDateTime.now());
         return eventsDao.save(events);
     }
 

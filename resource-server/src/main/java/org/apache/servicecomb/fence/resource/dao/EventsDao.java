@@ -38,7 +38,7 @@ public class EventsDao {
         return events;
     }
 
-    public Events findById(String id) {
+    public Events findById(Long id) {
         return sessionFactory.getCurrentSession().get(Events.class, id);
     }
 }
