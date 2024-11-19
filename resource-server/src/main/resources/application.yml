@@ -16,7 +16,7 @@
 ## limitations under the License.
 ## ---------------------------------------------------------------------------
 
-ZK_SERVER: 1.94.212.69:2181
+#ZK_SERVER: 1.94.212.69:2181
 
 servicecomb:
   service:
@@ -55,31 +55,3 @@ servicecomb:
       # java chassis internal schema and health api, should not authenticate
       scb-management:
         needAuth: false
-
-#jakarta:
-#  persistence:
-#    database-product-name: PostgreSQL
-#    jdbc:
-#      url: ${DB_URL:jdbc:postgres://1.94.212.69:5432/postgres}
-#      user: ${DB_USERNAME:gaussdb}
-#      password: ${DB_PASSWORD:Postgres@123}
-
-
-#hibernate:
-#  show_sql: true
-#  format_sql: true
-#  highlight_sql: true
-#  hbm2ddl_auto: true
-#  connection:
-#    dialect: org.hibernate.dialect.PostgresDialect
-#    url: ${DB_URL:jdbc:postgres://1.94.212.69:5432/postgres}
-#    username: ${DB_USERNAME:gaussdb}
-#    password: ${DB_PASSWORD:Postgres@123}
-#    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
-#spring:
-#  datasource:
-#    dialect: org.hibernate.dialect.PostgresDialect
-#    url: ${DB_URL:jdbc:postgres://1.94.212.69:5432/postgres}
-#    username: ${DB_USERNAME:gaussdb}
-#    password: ${DB_PASSWORD:Postgres@123}
-#    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
