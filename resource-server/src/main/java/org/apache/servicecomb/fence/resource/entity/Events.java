@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 @Table(name = "events")
 public class Events {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(name = "event")

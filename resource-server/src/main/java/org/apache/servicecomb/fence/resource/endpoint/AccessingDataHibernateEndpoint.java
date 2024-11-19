@@ -24,9 +24,8 @@ public class AccessingDataHibernateEndpoint {
     }
 
     @PutMapping("/save")
-    public Events saveEvents(@RequestParam("id") Long id, @RequestParam("event") String event) {
+    public Events saveEvents(@RequestParam("event") String event) {
         Events events = new Events();
-        events.setId(id);
         events.setEvent(event);
         events.setEventTime(LocalDateTime.now());
         return eventsDao.save(events);
