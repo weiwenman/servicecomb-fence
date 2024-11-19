@@ -23,9 +23,11 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class ResourceServerApplication {
+
   public static void main(String[] args) {
     try {
       new SpringApplicationBuilder(ResourceServerApplication.class).web(WebApplicationType.NONE).run(args);
+      System.out.println("start resource server success!");
     } catch (Throwable e) {
       e.printStackTrace();
     }
